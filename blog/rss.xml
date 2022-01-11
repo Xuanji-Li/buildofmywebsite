@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Hello World Blog</title>
+        <link>https://Xuanji-Li.github.io/blog</link>
+        <description>Hello World Blog</description>
+        <lastBuildDate>Thu, 07 Jan 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Js note 2]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/07/js-note2/js-note2</link>
+            <guid>/2021/01/07/js-note2/js-note2</guid>
+            <pubDate>Thu, 07 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[1 函数]]></description>
+            <content:encoded><![CDATA[<h2>1 函数</h2><pre><code class="language-html">&lt;body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        btn.addEventLisenter(&quot;click&quot;, function abc(){
+            console.log(btn.tagName);
+        })
+        btn.addEventLisenter(&quot;click&quot;, function(){
+            console.log(btn.tagName);
+        })
+
+        // btn.addEventLisenter(&quot;click&quot;, (){
+        //  console.log(btn.tagName);
+        // })
+
+        btn.addEventLisenter(&quot;click&quot;, ()=&gt;{
+            console.log(btn.tagName);
+        })
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><p>以上三者的区别</p><h2>2 函数与函数体</h2><p>function (){} //报错
+(function(){}) //不报错
+function f(x) {return x+1} ()  //报错
+function f(x) {return x+1} (1) //不报错，为什么返回1 </p><h2>3 箭头函数</h2><p>为什么要用</p><ul><li>箭头函数是匿名函数，不能作为构造函数，不能使用new</li><li>1）箭头函数没有自己的this对象</li><li>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替</li></ul><h2>5 ES6 完整版详解</h2><p><a href="https://es6.ruanyifeng.com/#docs/promise">ES6</a></p><h2>6 同步任务与异步任务</h2><pre><code>js 的 同步任务 异步任务  
+              异步任务又分为：宏任务 微任务  
+
+典型的宏任务 包括整体代码script，setTimeout() setIntervel()  ，IO  
+微任务是Promise，process.nextTick  
+微任务的执行时机要比宏任务来的早
+</code></pre><p><a href="https://www.bilibili.com/video/BV1CA411V791?from=search&amp;seid=13959033135384420900&amp;spm_id_from=333.337.0.0">详解1</a>
+<a href="https://www.jianshu.com/p/0652db9cfb46">详解2</a>
+<a href="https://juejin.cn/post/6844903512845860872">详解3</a></p><h2>7 Promise</h2><pre><code>promise 函数。 有点类似if else，去执行不同的方法。 把异步任务改为同步任务。async 改成awaite ，只有promise可以改        
+</code></pre><h2>8 String</h2><pre><code>string转换数字直接-0  
+str=str.parseInt()
+</code></pre><h2>9 常用的js方法 对数组进行操作的方法</h2><pre><code>for循环等  
+</code></pre><p>   <img src="4.jpeg"/>  </p><h2>10 js的按对象引用传值</h2><pre><code>如果
+var a=b={}
+a=&quot;str&quot;
+a和b都会变成“str”
+
+但是如果是number类型
+var a=b=0 
+a=1
+不会引用传值
+
+尽量避免引用传值
+</code></pre><h2>11 js事件冒泡</h2><h3>往父级元素冒泡</h3><pre><code class="language-javascript">&lt;div class=&quot;out&quot;&gt;out
+        &lt;div class=&quot;middle&quot;&gt;midlle
+            &lt;p class=&quot;inner&quot; &gt;inner&lt;p&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        let clickOut= document.querySelector(&quot;.out&quot;)
+        let clickMiddle=document.querySelector(&quot;.middle&quot;);
+        let clickInner=document.querySelector(&quot;.inner&quot;)
+        clickOut.onclick=function(){
+            console.log(&#x27;this is out&#x27;);
+        };
+        clickMiddle.onclick= function(){
+            console.log(&#x27;this is middle&#x27;)
+        }
+        clickInner.onclick=function(event){
+            event.stopPropagation();
+            console.log(&#x27;this is inner&#x27;);
+        };
+&lt;/script&gt;
+</code></pre><p>点击inner 依此打印inner middle out</p><h3>12 事件捕获</h3><pre><code>js事件捕获一般通过DOM2事件模型addEventListener来实现的：   
+target.addEventListener(type, listener, useCapture)  
+第三个参数是是否用事件捕捉    
+</code></pre><pre><code class="language-javascript">&lt;div class =&quot;out2&quot;&gt;out2
+        &lt;p class=&quot;middle2&quot;&gt;middle2
+            &lt;p class=&quot;inner2&quot;&gt;inner2&lt;/p&gt;
+        &lt;/p&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        let clickOut2=document.querySelector(&quot;.out2&quot;);
+        let clickMiddle2=document.querySelector(&quot;.middle2&quot;);
+        let clickInner2=document.querySelector(&quot;.inner2&quot;);
+        clickOut2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;out2&#x27;)},true);
+        clickMiddle2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;middle2&#x27;)},true);
+        clickInner2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;inner2&#x27;)},true);
+&lt;/script&gt;
+</code></pre><h3>13 map和foreach的区别</h3><pre><code>foreach更慢，不会return值，只会对数组中每个元素执行一遍传入的函数，
+
+map 更快， 会return值
+</code></pre><pre><code class="language-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
+        let arry= [1,2,3,4];
+        console.log(arry);
+
+        arry.forEach(element =&gt; {
+            console.log(element*2);
+        });
+
+        let arry2= arry.map(element =&gt; element*2);
+        let arry2= arry.map(element=&gt;{
+            return element*2;
+        })
+        console.log(arry2)
+&lt;/script&gt;
+</code></pre><h3>14 filter()</h3><pre><code>也是需要返回的
+</code></pre><pre><code class="language-javascript">let arr=[2,23,24,255,66]
+        let arr1=arr.filter(element=&gt;{
+            return element&gt;22;
+        })
+        console.log(arr1);
+</code></pre><h3>15 闭包</h3><pre><code>有了let之后不是太担心，不怕被污染了，以前怕局部变量污染全局变量
+闭包的作用是防止方法外访问方法内的变量
+精髓是每次调用闭包可以执行对变量的更改。
+</code></pre><h2>16 js prototype</h2><pre><code>框架不满足的时候可以改变底层逻辑
+创建新的class，增加对象的属性
+</code></pre>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[React]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/07/react/react</link>
+            <guid>/2021/01/07/react/react</guid>
+            <pubDate>Thu, 07 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[1 jsx]]></description>
+            <content:encoded><![CDATA[<h2>1 jsx</h2><pre><code>javascript 的语法扩展
+
+可以使用{} 内嵌任何的 ** javascript expressions **
+
+是一个语法糖，只是一个object
+</code></pre><h2>2 jsx的例子</h2><pre><code class="language-javascript">import React from &#x27;react&#x27;;
+
+class Welcome extends React.Component {
+    
+    render(){
+        const toDoList = [&#x27;learn react&#x27;,&#x27;learn Redux&#x27;];
+        const isLogin= true;
+        return( 
+        &lt;div&gt;
+            &lt;h1 className=&quot;123&quot;&gt;hello react&lt;/h1&gt;;
+            &lt;ul&gt;
+            {
+                toDoList.map(item =&gt;
+                    &lt;li&gt;{item}&lt;/li&gt;
+                )
+            }
+            &lt;/ul&gt;
+
+            {isLogin ? &lt;p&gt;u have login&lt;/p&gt; : &lt;p&gt;no&lt;/p&gt; }
+        &lt;/div&gt;
+        )
+    }
+}
+
+export default Welcome;
+</code></pre><p>需要注意的是在html格式里，class 变成className ，for 变成了htmlFor</p><h2>3 react 构建组件的例子 with bootstrap</h2><p>函数写法</p><pre><code class="language-javascript">const NameCard = (props) =&gt; {
+    const {name, number, isHuman, tags}=props;
+    return (
+        &lt;div className=&#x27;alert alert-success&#x27;&gt;
+        &lt;h4&gt;{name}&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;电话:{number}&lt;/li&gt;
+            &lt;li&gt;{isHuman ? &#x27;人类&#x27; : &#x27;外星人&#x27;}&lt;/li&gt;
+            &lt;p&gt;
+                {tags.map((tag,index)=&gt;(
+                    &lt;span key={index}&gt;{tag}&lt;/span&gt;)
+                )}
+            &lt;/p&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    )
+}
+</code></pre><p>组件写法</p><pre><code class="language-javascript">import React from &#x27;react&#x27;;
+
+class NameCard extends React.Component {
+    render(){
+        const {name, number, isHuman, tags}=this.props;
+        return(
+            &lt;div className=&#x27;alert alert-success&#x27;&gt;
+                &lt;h4&gt;{name}&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;电话:{number}&lt;/li&gt;
+                    &lt;li&gt;{isHuman ? &#x27;人类&#x27; : &#x27;外星人&#x27;}&lt;/li&gt;
+                    &lt;p&gt;
+                        {tags.map((tag,index)=&gt;(
+                            &lt;span key={index}&gt;{tag}&lt;/span&gt;)
+                        )}
+                    &lt;/p&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        )
+        
+        
+    }
+}
+export default NameCard;
+</code></pre><h2>4 react 自定义组件</h2><pre><code>关闭方法：&lt;LikesButton /&gt;
+</code></pre><h2>5 react 的 props/state/forms</h2><pre><code>组件内部的数据。可以动态改变
+
+this.setState()是更新state的唯一途径
+
+比如以下的点赞按钮的例子
+</code></pre><pre><code class="language-javascript">    class LikesButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            likes:0 
+        };
+    }
+    increaseLikes() {
+        alert(&#x27;Increasing&#x27;)
+        this.setState({ 
+            likes: ++this.state.likes
+        })
+    }
+    render() {
+        return (
+            &lt;div className=&quot;likes-button-component&quot;&gt;
+                &lt;button type=&quot;button&quot; className=&quot;btn btn-outline-primary btn-lg&quot;
+                // onClick={this.increaseLikes}
+                onClick={() =&gt; { this.increaseLikes()} }
+                &gt;
+                👍{this.state.likes}
+                &lt;/button&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+export default LikesButton;
+</code></pre><p><strong> 注意以上代码中的onClick 的箭头函数的使用方法 </strong></p><h2>6 react 组件的生命周期</h2><pre><code>组件初始化 
+
+组件更新
+
+组件卸载
+
+创建-》更新-〉卸载
+</code></pre><p><img src="1.png" alt="react的生命周期"/></p><h2>7 react 时钟</h2><pre><code>组件生命周期的案例
+</code></pre><pre><code class="language-javascript">import React from &#x27;react&#x27;;
+
+class DigitalCloud extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            date: new Date()
+        };
+    }
+    componentDidMount() {
+        this.time=setInterval(() =&gt;{ 
+            this.setState({
+                date:new Date()
+            })
+        },1000)
+    }
+    componentDidUpdate(currentProps,currentState){
+        console.log(currentState)
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer)
+    }
+    render() {
+        return(
+            &lt;div className=&quot;digital-Clock-component jumbotron&quot;&gt;
+                &lt;h1&gt;{this.state.date.toLocaleTimeString()}&lt;/h1&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+export default DigitalCloud;
+</code></pre><h2>8 react Form （受控组件）</h2><pre><code>可变状态通过setState改变 并且通过方法使react成为表单状态来源，二者合一
+react负责渲染表单组件，
+
+只有react控制的输入元素称为
+controlled components
+比如一个留言的功能
+</code></pre><pre><code class="language-javascript">import React from &#x27;react&#x27;
+class CommentBox extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state={
+            value:&#x27;&#x27;
+        }
+        // this.handleChange=this.handleChange.bind(this)
+    }
+    handleChange(event){
+        this.setState({
+            value: event.target.value
+        })
+    }
+    handleSubmit(event){
+        alert(this.state.value)
+        event.preventDefault()
+    }
+    render() {
+        return (
+            &lt;form className=&quot;p-5&quot; onSubmit={(event)=&gt;{this.handleSubmit(event)}} &gt;
+                &lt;div className=&quot;form-group&quot;&gt;
+                    &lt;label&gt;留言内容&lt;/label&gt;
+                    &lt;input
+                    type=&quot;text&quot;
+                    className=&quot;form-control&quot;
+                    onChange={(event)=&gt;{this.handleChange(event)}}
+                    //  onChange={this.handleChange}
+                    value={this.state.value}&gt;
+
+                    &lt;/input&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;submit&quot; className=&quot;btn btn-primary&quot;&gt;submit&lt;/button&gt;
+            &lt;/form&gt;
+        )
+    }
+}
+export default CommentBox;
+</code></pre><h2>9 若改为非受控组件</h2><p>获取input节点的时候删掉onChange 添加</p><pre><code class="language-javascript">&lt;input ref={(textInput)=&gt;{this.textInput=textInput}};
+</code></pre><pre><code class="language-javascript">handleSubmit()里，this.state.value改为this.textInput.value
+</code></pre>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Command note]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/01/command/command</link>
+            <guid>/2021/01/01/command/command</guid>
+            <pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[npm  & yarn]]></description>
+            <content:encoded><![CDATA[<h2>npm  &amp; yarn</h2><pre><code>npm install                 / yarn   
+npm install react--save     / yarn add react
+npm uninstall react --save  / yarn remove react
+npm install react --save-dev/ yarn add react --dev
+npm update --save           / yarn upgrade
+
+npm run dev                 / yarn run dev
+</code></pre><h2>parcel</h2><pre><code>npm init                           
+npm install --save-dev -parcel   
+//npx parcel index.html   
+</code></pre><ul><li><p>dev &amp; build</p><script>&quot;dev&quot;: &quot;parcel   index.html --port 8080&quot;, &quot;build&quot;: &quot;parcel build index.html&quot;,</script><p>npm run dev	启动本地开发环境服务
+npm run build 打包</p></li></ul><h2>docusaurus</h2><pre><code>npx create-docusaurus@latest my-website classic
+npm run start
+</code></pre><h2>react</h2><pre><code>npm install create-react-app-g
+create-react-app my-project
+npm start/build
+</code></pre><h2>bootstrap</h2><pre><code>nom install bootstrap --save
+
+import &#x27;bootstrap/dist/css/bootstrap.min.css&#x27;
+</code></pre>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Css-note]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/01/css-note/css-note</link>
+            <guid>/2021/01/01/css-note/css-note</guid>
+            <pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[css]]></description>
+            <content:encoded><![CDATA[<p>css</p><h2>id and class</h2><pre><code>id唯一，并且优先级高
+</code></pre><p><img src="1.png" alt="优先级"/></p><pre><code>blue &gt; green &gt; pink
+
+!important&gt;行内样式(style)&gt;id&gt;class
+</code></pre>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Interview]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/01/interview/interview</link>
+            <guid>/2021/01/01/interview/interview</guid>
+            <pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[+ interview]]]></description>
+            <content:encoded><![CDATA[<ul><li>[interview]<!-- -->](<a href="https://juejin.cn/post/6989422484722286600">https://juejin.cn/post/6989422484722286600</a>)</li><li></li></ul><p><img src="1.png" alt="框架"/>
+<img src="2.png" alt="框架"/></p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Js-note-1]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/01/js-note/js-note</link>
+            <guid>/2021/01/01/js-note/js-note</guid>
+            <pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Chapter 1 Intro]]></description>
+            <content:encoded><![CDATA[<h2>Chapter 1 Intro</h2><p>   js主要包含了三类:   </p><ul><li>ECMAScript:核心.  </li><li>DOM：文档对象模型.    </li><li>BOM：浏览器对戏那个模型.s   </li></ul><p><img src="1.png" alt="1"/></p><h2>Chapter 3 变量相关</h2><p>var和let的区别主要是
+1.变量提升
+2.在开发过程中会有重复命名的情况（多人协作情况下），var则不会报错，用let更好。
+3.let的作用域主要是块作用域，var主要是函数作用域。</p><h2>Chapter 14 DOM</h2><p><img src="2.png" alt="1"/></p><h3>14.1 node类型</h3><h4>14.1.1 nodeType</h4><ul><li><p>Node.ELEMENT_NODE（1）</p></li><li><p>Node.ATTRIBUTE_NODE（2）</p></li><li><p>Node.TEXT_NODE（3）</p></li><li><p>Node.CDATA_SECTION_NODE（4） </p></li><li><p>Node.ENTITY_REFERENCE_NODE（5）</p></li><li><p>Node.ENTITY_NODE（6）</p></li><li><p>Node.PROCESSING_INSTRUCTION_NODE（7）</p></li><li><p>Node.COMMENT_NODE（8）</p></li><li><p>Node.DOCUMENT_NODE（9）</p></li><li><p>Node.DOCUMENT_TYPE_NODE（10）</p></li><li><p>Node.DOCUMENT_FRAGMENT_NODE（11）</p></li><li><p>Node.NOTATION_NODE（12）</p></li></ul><p>节点类型可通过与这些常量比较来确定，比如：  </p><p>if (someNode.nodeType == Node.ELEMENT_NODE){  </p><p> 	   alert(&quot;Node is an element.&quot;);<br/>
+<!-- -->}    </p><p>这个例子比较了someNode.nodeType与Node.ELEMENT_NODE常量。如果两者相等，则意味着someNode是一个元素节点。  </p><h4>14.1.2 nodeName / nodeValue</h4><p>每一个节点又都有两个属性
+someNode.nodeName //元素的标签名字（比如p，span，body，head）<br/>
+<!-- -->someNode.nodeValue//元素的value</p><p>比如以下代码：  </p><pre><code class="language-html">&lt;body&gt;
+   &lt;div class=&quot;container1&quot;&gt;
+      &lt;div&gt;
+         123
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;\body&gt;
+</code></pre><pre><code class="language-javascript">&lt;script&gt;
+var a = document.querySelector(&quot;.container1&quot;);
+   console.log(a.nodeType);
+   console.log(a.nodeName);
+   **console.log(a.nodeValue); **
+   console.dir(a)
+&lt;/script&gt; 
+</code></pre><p>则会分别打印
+1 ， DIV ， null ， 此节点的所有属性</p><h4>14.1.3 节点关系</h4><p>   <img src="3.png" alt="3"/></p><h4>14.1.4 节点操作</h4><p>   1.比较常用的是appendChild()  </p><ul><li><p>需要注意的是，添加节点之后返回的节点，就是添加的节点  </p></li><li><p><strong>并且添加之后这个节点在父节点的末尾</strong>   </p><p><code>let returnedNode = someNode.appendChild(newNode);   
+ alert(returnedNode == newNode); // true   
+ alert(someNode.lastChild == newNode); // true </code>    </p><p>2.insertBefore()  </p></li><li><p>此操作两个参数，第一个是插入的节点，第二个是参照节点，若参照节点为null则此方法视为appendChild   </p></li><li><p>添加节点之后返回的节点，就是添加的节点。   </p><p>3.someNode.childNodes<!-- -->[x]<!-- -->  </p></li><li><p>返回对应位置的node，x为其index。  </p><p>4.replaceChild()  </p></li><li><p>同样两个参数，插入的节点和需要取代的节点。  </p><p>5.removeChild()  </p></li><li><p>一个参数，需要注意的是返回的节点就是被移除的节点    </p><p>6.cloneNode()</p></li><li><p>传入false或者true,深浅拷贝</p></li></ul><h3>14.2 document类型</h3><p>   它的属性：<br/>
+<!-- -->nodeTyple 9
+nodeName 值为&quot;#document&quot;
+nodeValue 值为null
+parentNode 值为 null；
+ownerDocument 值为 null；  </p><p>   1.获取html这个最外层的节点的方式：    </p><ul><li><p>let html = document.documentElement;     </p></li><li><p>alert(html === document.childNodes<!-- -->[0]<!-- -->);  true    </p></li><li><p>alert(html === document.firstChild);   true   </p><p>2.document.body     //直接指向body<br/>
+<!-- -->document.title    //指向文档的title<br/>
+<!-- -->document.URL<br/>
+<!-- -->document.domain   //获取<a href="http://www.baidu.com/123/abc">www.baidu.com/123/abc</a> 中的<a href="http://www.baidu.com">www.baidu.com</a>
+document.referrer  </p><p>3.getElementById(&quot;&quot;)  //没找到返回null<br/>
+<!-- -->getElementByTag(&quot;&quot;) // 比如传入img  div<br/>
+<!-- -->getElementByName(&quot;&quot;)   </p></li></ul><h3>14.3 Element类型</h3><p>   nodeType 等于 1；<br/>
+<!-- -->nodeName 值为元素的标签名；<br/>
+<!-- -->nodeValue 值为 null；<br/>
+<!-- -->parentNode 值为 Document 或 Element 对象；  </p><h3>14.3 text类型</h3><p>   nodeType 3;<br/>
+<!-- -->nodeName  &quot;text&quot;<br/>
+<!-- -->nodeValue  为节点中包含的文本。<br/>
+<!-- -->parentNode 为element对象<br/>
+<!-- -->不支持子节点  </p><h2>Chapter 15 DOM 扩展</h2><h3>15.1 selectors API</h3><ul><li>querySlector()   </li><li>querySlectorAll()<br/>//id 为 #<br/>//class 为 .<br/>//标签没有前缀  </li></ul><h3>15.2 CSS 扩展</h3><ul><li><p>getElementsByClassName();<br/>
+<!-- -->比如：<br/>
+<!-- -->document.getElementsByClassName(&quot;username current&quot;)   //取所有类名中包含username和current的元素<br/>
+<!-- -->document.getElementById(&quot;myDIv&quot;).getElementsByClassName(&quot;selected&quot;);   //取id为myDiv的元素子树中所有包含selected类的元素  </p></li><li><p>classList<br/>
+<!-- -->classList.add()<br/>
+<!-- -->classList.remove()<br/>
+<!-- -->classList.toggle(value)     //如果类名列表有value，则删除，如果不存在，则添加<br/>
+<!-- -->classList.contains()  </p></li><li><p>readyState
+document.readyState ==&quot;complete&quot; 文档加载完成<br/>
+<!-- -->document.readyState ==&quot;loading&quot; 文档加载正在进行    </p></li><li><p>innerHTML 返回元素所有后代的html字符串<br/>
+<!-- -->也会替换原来所包含的所有节点   </p></li><li><p>outerHTML 调用的话会调用完整的node树<br/>
+<!-- -->写入的时候会完全取代原来的树   </p></li><li><p>insertAdjacentHTML()<br/>
+<!-- -->insertAdfacentText()<br/>
+<!-- -->都需要传入两个参数：  要插入标记的位置， 要插入的html或者文本  </p><p>  “beforebegin” 插入当前元素千遍，作为前一个同胞节点<br/>
+<!-- -->“afterend“    插入当前元素后边，作为下一个同胞节点<br/>
+<!-- -->“afterbegin”  插入当前元素内部，作为新节点或者第一个子节点千遍<br/>
+<!-- -->“beforeend”   插入元素内部，作为新的子节点或者放在最后一个子节点后边  </p></li><li><p>innerText  获取返回所有的text的字符串<br/>
+<!-- -->在设置和写入的时候会移除之前所有的后代节点，完全改变dom树<br/>
+<!-- -->outerText  只是作用范围不同，outer包含了调用它的节点。  </p></li></ul><h2>Chapter 17 事件</h2><h3>17.1 DOM事件对象</h3><pre><code class="language-html">btn.onclick = function(){
+   console.log(this.id)
+}
+</code></pre><p>   多次写同样的点击事件会按照顺序执行  </p><p>   <strong>event对象是传给事件处理程序的唯一参数。</strong><br/>
+<!-- -->比如：<br/>
+<!-- -->first.addEventListener(&quot;click&quot;, function(event){<br/>
+<!-- -->alert(&quot;哈哈哈哈&quot;);  </p><h3>17.2 DOM事件对象</h3><ul><li><p>addEventListener()     </p></li><li><p>removeEventListener()  </p><ul><li>click  </li><li>mouseover  </li><li>mouseout  </li></ul><p>他们接受三个参数：事件名， 事件处理函数， 一个boolean  </p><ul><li>true 在捕获阶段调用    </li><li>false 在冒泡阶段调用<br/>通过addEventListener()添加的事件只能通过removeEventListener来移除并且必须添加同样的参数。<br/>所以匿名函数无法移出。  </li></ul></li></ul><h3>17.3 IE事件对象</h3><ul><li><p>attachEvent()  </p></li><li><p>detachEvent()  </p><ul><li>onclick  </li></ul></li><li><p>stopPropogation() 例子如下：     </p><pre><code class="language-html">&lt;body&gt;
+     &lt;ul class=&quot;container&quot;&gt;containner
+         &lt;li class=&quot;first&quot;&gt;first&lt;/li&gt;
+         &lt;li&gt;second&lt;/li&gt;
+     &lt;/ul&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+        let container = document.querySelector(&quot;.container&quot;)
+        let first = document.querySelector(&quot;.first&quot;)
+        first.addEventListener(&quot;click&quot;, function(event){
+         alert(&quot;哈哈哈哈&quot;);
+         // event.stopPropagation();
+        })
+        container.addEventListener(&quot;click&quot;, function(){
+         alert(&quot;呜呜呜呜&quot;);
+        })     
+     &lt;/script&gt;
+&lt;/body&gt;  
+</code></pre><p>以上事例展示了stop Propagation的功能，组织往父级元素传播</p></li></ul><h3>17.4 事件类型</h3><ul><li>用户界面事件（UIEvent）：涉及与BOM交互的通用浏览器事件</li><li>焦点事件（FocusEvent）：在元素获得和失去焦点时触发</li><li>鼠标事件（MouseEvent）： 使用鼠标在页面上执行某些操作时触发</li><li>滚轮事件（WheelEvent）： 使用鼠标滚轮时候触发</li><li>输入事件（InputEvent）： 文档中输入文本时候触发</li><li>合成事件（CompositionEvent）： 在使用某种Input Method Editor 输入法编辑器输入字符时候触发</li></ul>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
