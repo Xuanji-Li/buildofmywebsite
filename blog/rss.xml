@@ -360,15 +360,6 @@ import &#x27;bootstrap/dist/css/bootstrap.min.css&#x27;
 </code></pre>]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[Interview]]></title>
-            <link>https://Xuanji-Li.github.io/blog/2021/01/01/interview/interview</link>
-            <guid>/2021/01/01/interview/interview</guid>
-            <pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[+ interview]]]></description>
-            <content:encoded><![CDATA[<ul><li>[interview]<!-- -->](<a href="https://juejin.cn/post/6989422484722286600">https://juejin.cn/post/6989422484722286600</a>)</li><li></li></ul><p><img src="1.png" alt="框架"/>
-<img src="2.png" alt="框架"/></p>]]></content:encoded>
-        </item>
-        <item>
             <title><![CDATA[Js-note-1]]></title>
             <link>https://Xuanji-Li.github.io/blog/2021/01/01/js-note/js-note</link>
             <guid>/2021/01/01/js-note/js-note</guid>
@@ -457,6 +448,15 @@ document.readyState ==&quot;complete&quot; 文档加载完成<br/>
      &lt;/script&gt;
 &lt;/body&gt;  
 </code></pre><p>以上事例展示了stop Propagation的功能，组织往父级元素传播</p></li></ul><h3>17.4 事件类型</h3><ul><li>用户界面事件（UIEvent）：涉及与BOM交互的通用浏览器事件</li><li>焦点事件（FocusEvent）：在元素获得和失去焦点时触发</li><li>鼠标事件（MouseEvent）： 使用鼠标在页面上执行某些操作时触发</li><li>滚轮事件（WheelEvent）： 使用鼠标滚轮时候触发</li><li>输入事件（InputEvent）： 文档中输入文本时候触发</li><li>合成事件（CompositionEvent）： 在使用某种Input Method Editor 输入法编辑器输入字符时候触发</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Interview]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2021/01/01/interview/interview</link>
+            <guid>/2021/01/01/interview/interview</guid>
+            <pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[+ interview]]]></description>
+            <content:encoded><![CDATA[<ul><li>[interview]<!-- -->](<a href="https://juejin.cn/post/6989422484722286600">https://juejin.cn/post/6989422484722286600</a>)</li><li></li></ul><p><img src="1.png" alt="框架"/>
+<img src="2.png" alt="框架"/></p>]]></content:encoded>
         </item>
     </channel>
 </rss>
