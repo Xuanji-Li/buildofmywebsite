@@ -1,12 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Xuanji-Li.github.io/blog</id>
-    <title>Hello Worldtest Blog</title>
+    <title>Hello World Blog</title>
     <updated>2021-01-07T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Xuanji-Li.github.io/blog"/>
-    <subtitle>Hello Worldtest Blog</subtitle>
+    <subtitle>Hello World Blog</subtitle>
     <icon>https://Xuanji-Li.github.io/img/dog.png</icon>
+    <entry>
+        <title type="html"><![CDATA[Js note 2]]></title>
+        <id>/2021/01/07/js-note2/js-note2</id>
+        <link href="https://Xuanji-Li.github.io/blog/2021/01/07/js-note2/js-note2"/>
+        <updated>2021-01-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[1 函数]]></summary>
+        <content type="html"><![CDATA[<h2>1 函数</h2><pre><code class="language-html">&lt;body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        btn.addEventLisenter(&quot;click&quot;, function abc(){
+            console.log(btn.tagName);
+        })
+        btn.addEventLisenter(&quot;click&quot;, function(){
+            console.log(btn.tagName);
+        })
+
+        // btn.addEventLisenter(&quot;click&quot;, (){
+        //  console.log(btn.tagName);
+        // })
+
+        btn.addEventLisenter(&quot;click&quot;, ()=&gt;{
+            console.log(btn.tagName);
+        })
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><p>以上三者的区别</p><h2>2 函数与函数体</h2><p>function (){} //报错
+(function(){}) //不报错
+function f(x) {return x+1} ()  //报错
+function f(x) {return x+1} (1) //不报错，为什么返回1 </p><h2>3 箭头函数</h2><p>为什么要用</p><ul><li>箭头函数是匿名函数，不能作为构造函数，不能使用new</li><li>1）箭头函数没有自己的this对象</li><li>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替</li></ul><h2>5 ES6 完整版详解</h2><p><a href="https://es6.ruanyifeng.com/#docs/promise">ES6</a></p><h2>6 同步任务与异步任务</h2><pre><code>js 的 同步任务 异步任务  
+              异步任务又分为：宏任务 微任务  
+
+典型的宏任务 包括整体代码script，setTimeout() setIntervel()  ，IO  
+微任务是Promise，process.nextTick  
+微任务的执行时机要比宏任务来的早
+</code></pre><p><a href="https://www.bilibili.com/video/BV1CA411V791?from=search&amp;seid=13959033135384420900&amp;spm_id_from=333.337.0.0">详解1</a>
+<a href="https://www.jianshu.com/p/0652db9cfb46">详解2</a>
+<a href="https://juejin.cn/post/6844903512845860872">详解3</a></p><h2>7 Promise</h2><pre><code>promise 函数。 有点类似if else，去执行不同的方法。 把异步任务改为同步任务。async 改成awaite ，只有promise可以改        
+</code></pre><h2>8 String</h2><pre><code>string转换数字直接-0  
+str=str.parseInt()
+</code></pre><h2>9 常用的js方法 对数组进行操作的方法</h2><pre><code>for循环等  
+</code></pre><p>   <img src="4.jpeg"/>  </p><h2>10 js的按对象引用传值</h2><pre><code>如果
+var a=b={}
+a=&quot;str&quot;
+a和b都会变成“str”
+
+但是如果是number类型
+var a=b=0 
+a=1
+不会引用传值
+
+尽量避免引用传值
+</code></pre><h2>11 js事件冒泡</h2><h3>往父级元素冒泡</h3><pre><code class="language-javascript">&lt;div class=&quot;out&quot;&gt;out
+        &lt;div class=&quot;middle&quot;&gt;midlle
+            &lt;p class=&quot;inner&quot; &gt;inner&lt;p&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        let clickOut= document.querySelector(&quot;.out&quot;)
+        let clickMiddle=document.querySelector(&quot;.middle&quot;);
+        let clickInner=document.querySelector(&quot;.inner&quot;)
+        clickOut.onclick=function(){
+            console.log(&#x27;this is out&#x27;);
+        };
+        clickMiddle.onclick= function(){
+            console.log(&#x27;this is middle&#x27;)
+        }
+        clickInner.onclick=function(event){
+            event.stopPropagation();
+            console.log(&#x27;this is inner&#x27;);
+        };
+&lt;/script&gt;
+</code></pre><p>点击inner 依此打印inner middle out</p><h3>12 事件捕获</h3><pre><code>js事件捕获一般通过DOM2事件模型addEventListener来实现的：   
+target.addEventListener(type, listener, useCapture)  
+第三个参数是是否用事件捕捉    
+</code></pre><pre><code class="language-javascript">&lt;div class =&quot;out2&quot;&gt;out2
+        &lt;p class=&quot;middle2&quot;&gt;middle2
+            &lt;p class=&quot;inner2&quot;&gt;inner2&lt;/p&gt;
+        &lt;/p&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        let clickOut2=document.querySelector(&quot;.out2&quot;);
+        let clickMiddle2=document.querySelector(&quot;.middle2&quot;);
+        let clickInner2=document.querySelector(&quot;.inner2&quot;);
+        clickOut2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;out2&#x27;)},true);
+        clickMiddle2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;middle2&#x27;)},true);
+        clickInner2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;inner2&#x27;)},true);
+&lt;/script&gt;
+</code></pre><h3>13 map和foreach的区别</h3><pre><code>foreach更慢，不会return值，只会对数组中每个元素执行一遍传入的函数，
+
+map 更快， 会return值
+</code></pre><pre><code class="language-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
+        let arry= [1,2,3,4];
+        console.log(arry);
+
+        arry.forEach(element =&gt; {
+            console.log(element*2);
+        });
+
+        let arry2= arry.map(element =&gt; element*2);
+        let arry2= arry.map(element=&gt;{
+            return element*2;
+        })
+        console.log(arry2)
+&lt;/script&gt;
+</code></pre><h3>14 filter()</h3><pre><code>也是需要返回的
+</code></pre><pre><code class="language-javascript">let arr=[2,23,24,255,66]
+        let arr1=arr.filter(element=&gt;{
+            return element&gt;22;
+        })
+        console.log(arr1);
+</code></pre><h3>15 闭包</h3><pre><code>有了let之后不是太担心，不怕被污染了，以前怕局部变量污染全局变量
+闭包的作用是防止方法外访问方法内的变量
+精髓是每次调用闭包可以执行对变量的更改。
+</code></pre><h2>16 js prototype</h2><pre><code>框架不满足的时候可以改变底层逻辑
+创建新的class，增加对象的属性
+</code></pre>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[React]]></title>
         <id>/2021/01/07/react/react</id>
@@ -202,122 +318,6 @@ class CommentBox extends React.Component {
 export default CommentBox;
 </code></pre><h2>9 若改为非受控组件</h2><p>获取input节点的时候删掉onChange 添加</p><pre><code class="language-javascript">&lt;input ref={(textInput)=&gt;{this.textInput=textInput}};
 </code></pre><pre><code class="language-javascript">handleSubmit()里，this.state.value改为this.textInput.value
-</code></pre>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Js note 2]]></title>
-        <id>/2021/01/07/js-note2/js-note2</id>
-        <link href="https://Xuanji-Li.github.io/blog/2021/01/07/js-note2/js-note2"/>
-        <updated>2021-01-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[1 函数]]></summary>
-        <content type="html"><![CDATA[<h2>1 函数</h2><pre><code class="language-html">&lt;body&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-        btn.addEventLisenter(&quot;click&quot;, function abc(){
-            console.log(btn.tagName);
-        })
-        btn.addEventLisenter(&quot;click&quot;, function(){
-            console.log(btn.tagName);
-        })
-
-        // btn.addEventLisenter(&quot;click&quot;, (){
-        //  console.log(btn.tagName);
-        // })
-
-        btn.addEventLisenter(&quot;click&quot;, ()=&gt;{
-            console.log(btn.tagName);
-        })
-    &lt;/script&gt;
-&lt;/body&gt;
-</code></pre><p>以上三者的区别</p><h2>2 函数与函数体</h2><p>function (){} //报错
-(function(){}) //不报错
-function f(x) {return x+1} ()  //报错
-function f(x) {return x+1} (1) //不报错，为什么返回1 </p><h2>3 箭头函数</h2><p>为什么要用</p><ul><li>箭头函数是匿名函数，不能作为构造函数，不能使用new</li><li>1）箭头函数没有自己的this对象</li><li>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替</li></ul><h2>5 ES6 完整版详解</h2><p><a href="https://es6.ruanyifeng.com/#docs/promise">ES6</a></p><h2>6 同步任务与异步任务</h2><pre><code>js 的 同步任务 异步任务  
-              异步任务又分为：宏任务 微任务  
-
-典型的宏任务 包括整体代码script，setTimeout() setIntervel()  ，IO  
-微任务是Promise，process.nextTick  
-微任务的执行时机要比宏任务来的早
-</code></pre><p><a href="https://www.bilibili.com/video/BV1CA411V791?from=search&amp;seid=13959033135384420900&amp;spm_id_from=333.337.0.0">详解1</a>
-<a href="https://www.jianshu.com/p/0652db9cfb46">详解2</a>
-<a href="https://juejin.cn/post/6844903512845860872">详解3</a></p><h2>7 Promise</h2><pre><code>promise 函数。 有点类似if else，去执行不同的方法。 把异步任务改为同步任务。async 改成awaite ，只有promise可以改        
-</code></pre><h2>8 String</h2><pre><code>string转换数字直接-0  
-str=str.parseInt()
-</code></pre><h2>9 常用的js方法 对数组进行操作的方法</h2><pre><code>for循环等  
-</code></pre><p>   <img src="4.jpeg"/>  </p><h2>10 js的按对象引用传值</h2><pre><code>如果
-var a=b={}
-a=&quot;str&quot;
-a和b都会变成“str”
-
-但是如果是number类型
-var a=b=0 
-a=1
-不会引用传值
-
-尽量避免引用传值
-</code></pre><h2>11 js事件冒泡</h2><h3>往父级元素冒泡</h3><pre><code class="language-javascript">&lt;div class=&quot;out&quot;&gt;out
-        &lt;div class=&quot;middle&quot;&gt;midlle
-            &lt;p class=&quot;inner&quot; &gt;inner&lt;p&gt;
-        &lt;/div&gt;
-&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-        let clickOut= document.querySelector(&quot;.out&quot;)
-        let clickMiddle=document.querySelector(&quot;.middle&quot;);
-        let clickInner=document.querySelector(&quot;.inner&quot;)
-        clickOut.onclick=function(){
-            console.log(&#x27;this is out&#x27;);
-        };
-        clickMiddle.onclick= function(){
-            console.log(&#x27;this is middle&#x27;)
-        }
-        clickInner.onclick=function(event){
-            event.stopPropagation();
-            console.log(&#x27;this is inner&#x27;);
-        };
-&lt;/script&gt;
-</code></pre><p>点击inner 依此打印inner middle out</p><h3>12 事件捕获</h3><pre><code>js事件捕获一般通过DOM2事件模型addEventListener来实现的：   
-target.addEventListener(type, listener, useCapture)  
-第三个参数是是否用事件捕捉    
-</code></pre><pre><code class="language-javascript">&lt;div class =&quot;out2&quot;&gt;out2
-        &lt;p class=&quot;middle2&quot;&gt;middle2
-            &lt;p class=&quot;inner2&quot;&gt;inner2&lt;/p&gt;
-        &lt;/p&gt;
-&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-        let clickOut2=document.querySelector(&quot;.out2&quot;);
-        let clickMiddle2=document.querySelector(&quot;.middle2&quot;);
-        let clickInner2=document.querySelector(&quot;.inner2&quot;);
-        clickOut2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;out2&#x27;)},true);
-        clickMiddle2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;middle2&#x27;)},true);
-        clickInner2.addEventListener(&quot;click&quot;,function(){console.log(&#x27;inner2&#x27;)},true);
-&lt;/script&gt;
-</code></pre><h3>13 map和foreach的区别</h3><pre><code>foreach更慢，不会return值，只会对数组中每个元素执行一遍传入的函数，
-
-map 更快， 会return值
-</code></pre><pre><code class="language-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
-        let arry= [1,2,3,4];
-        console.log(arry);
-
-        arry.forEach(element =&gt; {
-            console.log(element*2);
-        });
-
-        let arry2= arry.map(element =&gt; element*2);
-        let arry2= arry.map(element=&gt;{
-            return element*2;
-        })
-        console.log(arry2)
-&lt;/script&gt;
-</code></pre><h3>14 filter()</h3><pre><code>也是需要返回的
-</code></pre><pre><code class="language-javascript">let arr=[2,23,24,255,66]
-        let arr1=arr.filter(element=&gt;{
-            return element&gt;22;
-        })
-        console.log(arr1);
-</code></pre><h3>15 闭包</h3><pre><code>有了let之后不是太担心，不怕被污染了，以前怕局部变量污染全局变量
-闭包的作用是防止方法外访问方法内的变量
-精髓是每次调用闭包可以执行对变量的更改。
-</code></pre><h2>16 js prototype</h2><pre><code>框架不满足的时候可以改变底层逻辑
-创建新的class，增加对象的属性
 </code></pre>]]></content>
     </entry>
     <entry>
