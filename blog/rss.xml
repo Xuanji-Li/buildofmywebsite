@@ -4,9 +4,84 @@
         <title>Hello World Blog</title>
         <link>https://Xuanji-Li.github.io/blog</link>
         <description>Hello World Blog</description>
-        <lastBuildDate>Sun, 09 Jan 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 12 Jan 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[ES6 Destucturing]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2022/01/12/ES6-Destructuring/jsvariable</link>
+            <guid>/2022/01/12/ES6-Destructuring/jsvariable</guid>
+            <pubDate>Wed, 12 Jan 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[变量的动态属性]]></description>
+            <content:encoded><![CDATA[<h2>变量的动态属性</h2><h3>1.数组的解构赋值</h3><pre><code>不同以前的
+</code></pre><pre><code class="language-javascript">    let a=1;
+    let a=2;
+</code></pre><pre><code>ES6 允许 匹配模式的解构
+</code></pre><pre><code class="language-javascript">    let[a,b,c]=[1,2,3];
+
+    let[x,,y]=[1,2,3,]
+    x //1
+    y //3
+
+    let[x,y,,z]=[&#x27;a&#x27;]
+    x // &quot;a&quot;
+    y // undefine
+</code></pre><pre><code>不完全解构
+</code></pre><pre><code class="language-javascript">    let[a, [b], d] = [1,[2,3],4]
+    a //1
+    b //2
+    d //4
+</code></pre><h3>2.默认值</h3><pre><code>解构赋值允许指定默认值
+</code></pre><pre><code class="language-javascript">    比如
+    let a=0,b=1;
+    function(){
+        [a,b]=[b,a+b];
+    }
+
+    let [foo =true] =[];
+    foo //true;
+
+    let [x, y=&#x27;b&#x27;]=[&#x27;a&#x27;]
+    // x=&#x27;a&#x27;, y=&#x27;b&#x27;
+    let [x, y=&#x27;b&#x27;]=[&#x27;a&#x27;,undefine]
+    //x =&#x27;a&#x27; y=&#x27;b&#x27;
+</code></pre><h3>3.对象的解构赋值</h3><pre><code class="language-javascript">    let{foo, bar} = {foo:&#x27;aaa&#x27; , bar: &#x27;bbb&#x27;}
+    foo // &#x27;aaa&#x27;
+    foo // &#x27;bbb&#x27;
+</code></pre><h2>需要注意的点</h2><pre><code>结构的解构的左右代码必须放在（）里
+
+let x;
+({x}={x:1})
+</code></pre><h2>主要用途：</h2><h3>交换变量的值</h3><pre><code class="language-javascript">    let a=1;
+    let b=2;
+
+    [a,b]=[b,a];
+</code></pre><h3>从函数返回多个值</h3><pre><code class="language-javascript">    function example(){
+        return [1,2,3]
+    }
+    let [a,b,c]=example()
+
+    function example(){
+        return{
+            foo: 1,
+            bar: 2
+        }
+    }
+    let{foo ,bar} =example();
+</code></pre><h3>函数参数的定义</h3><pre><code class="language-javascript">    function ([x,y,z]){...}
+    f([z:3,y:2,x:1])
+</code></pre><h3>提取json 数据</h3><pre><code class="language-javascript">    let jsonData={
+        id: 42,
+        status:&quot;OK&quot;,
+        data: [867,5309]
+    };
+
+    let{id,status,data:number} = jsonData;
+
+    console.log(id, status, number);
+    // 42, &quot;OK&quot; , [867,5309]
+</code></pre>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[some document for CSS]]></title>
             <link>https://Xuanji-Li.github.io/blog/2022/01/09/document-for-CSS/CSS</link>
@@ -155,7 +230,7 @@ map 更快， 会return值
 </code></pre>]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[Js advanced programming & design]]></title>
+            <title><![CDATA[Note-Js advanced programming & design]]></title>
             <link>https://Xuanji-Li.github.io/blog/2022/01/06/Note-Js advanced programming &amp; design/Note-Js advanced programming &amp; design</link>
             <guid>/2022/01/06/Note-Js advanced programming &amp; design/Note-Js advanced programming &amp; design</guid>
             <pubDate>Thu, 06 Jan 2022 00:00:00 GMT</pubDate>
