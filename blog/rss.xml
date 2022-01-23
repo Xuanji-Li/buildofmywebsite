@@ -4,9 +4,75 @@
         <title>Hello World Blog</title>
         <link>https://Xuanji-Li.github.io/blog</link>
         <description>Hello World Blog</description>
-        <lastBuildDate>Wed, 12 Jan 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 21 Jan 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[MVC principle]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2022/01/21/MVC/mvc</link>
+            <guid>/2022/01/21/MVC/mvc</guid>
+            <pubDate>Fri, 21 Jan 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[mvc pattern]]></description>
+            <content:encoded><![CDATA[<h2>mvc pattern</h2><ol><li><p>How to design the structure of a program is a specialised discipline called &quot;architectural pattern&quot;, which belongs to the methodology of programming.
+The MVC pattern is one of the architectural patterns and it has been particularly inspiring to me. I think it is applicable not only to developing software but also to a wide range of other design and organisational tasks.
+Here are some of my personal understandings of the MVC pattern, not necessarily correct, but mainly used to organize my thoughts.</p></li><li><p>MVC is an acronym for three words, they are Model, View and Controller.
+This model believes that programs, whether simple or complex, can be structurally divided into three layers.
+1) The top layer is the View layer, which is directly oriented to the end user. It is the interface provided to the user and is the shell of the program.
+2) The bottom layer is the core &quot;data layer&quot; (Model), that is, the data or information that the program needs to manipulate.
+(3) The middle layer is the Controller, which is responsible for selecting the data in the Data Layer according to the user&#x27;s input from the View Layer, and then manipulating it accordingly to produce the final result.
+These three layers are closely linked but independent of each other, with changes within each layer not affecting the others. Each layer provides an external Interface for the layer above to call. In this way, the software can be modularised so that changes to appearance or data do not require changes to other layers, greatly facilitating maintenance and upgrades.</p></li><li><p>I use the Windows calculator applet as an example to explain the MVC pattern, although it is not necessarily written using this pattern.
+In this calculator application, the external buttons and the top display bar are the &quot;view layer&quot;, the numbers that need to be calculated are the &quot;data layer&quot;, and the internal steps that perform the addition, subtraction, multiplication and division are the &quot;control layer&quot;. Each layer performs a different function and the structure of the program is very clear.
+If we expand our imagination a little, we can see that many programs are essentially in this mode: they provide a set of external triggers (in this case, buttons), then perform some internal operations and finally return the result. Thus, the MVC pattern is very widely used.</p></li><li><p>In my opinion, not only can the MVC pattern be used for writing programs, it can also be used for household appliances.
+Take the example of a household microwave oven, which can be understood as a three-tier structure as well. In the simplest case, the microwave oven is operated by two dials, one controlling the temperature and the other the time. These two dials are the &#x27;view&#x27; layer, while the microwave generator inside is the &#x27;data&#x27; layer (Model), where &#x27;data&#x27; needs to be understood as &#x27;core functionality&#x27;. The control layer is used to translate the information entered by the user via the dial into an operation of the microwave generator.
+If each layer is independent, then a new, trendy casing on the outside of the microwave oven, or a more powerful microwave generator on the inside, can be implemented without changing the other layers. This is the advantage of the MVC model.</p></li><li><p>Further, if the MVC pattern is interpreted as a three-tier structure of &quot;appearance&quot;, &quot;mechanism&quot; and &quot;functionality/data&quot;, then many human organisations can be structured in the MVC pattern.
+A shopping mall, for example, can be divided into three parts. One part is the warehouse, responsible for providing goods, which is the &#x27;functional layer&#x27; (or &#x27;data layer&#x27;); the other part is the retail shop, responsible for selling goods, which is its &#x27;appearance layer&#x27;; and in between is the &#x27;mechanism layer&#x27;, which includes all the mechanisms for interaction between the counter and the warehouse.
+With this distinction, the structure of the mall becomes very clear and can be optimised for the different layers to improve efficiency.</p></li></ol>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[C#10 + .net core + VS2022]]></title>
+            <link>https://Xuanji-Li.github.io/blog/2022/01/19/C-sharp/c-sharp</link>
+            <guid>/2022/01/19/C-sharp/c-sharp</guid>
+            <pubDate>Wed, 19 Jan 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[.net]]></description>
+            <content:encoded><![CDATA[<h2>.net</h2><pre><code>1.desktop app
+2.web
+3.mobile app
+4.VR mobile game
+</code></pre><h2>CS &amp; BS</h2><pre><code>CS : client and server
+have to install an application on
+etc: vs code
+
+BS : browser and server
+only need a browser
+</code></pre><h2>generic in C#</h2><pre><code>if i dont want to define the type of the element
+suppost there is a method with two parameters
+if i pass an int, display int
+if its string then display string
+basically use one method to handle different input value type
+</code></pre><h2>partical class</h2><pre><code>suppose one class has muptiple methods
+</code></pre><pre><code class="language-c#">class PartialTest
+    {
+    string Str_FieldTest;
+    int Int_FieldTest;
+    public void DoTest()
+    {
+    Debug.Print(&quot;Test&quot;);
+    }
+    }
+</code></pre><p>can be written like :</p><pre><code class="language-c#">partial class PartialTest
+    {
+    string Str_FieldTest;
+    int Int_FieldTest;
+    }
+</code></pre><p>one file and in another:</p><pre><code class="language-c#">    partial class PartialTest
+    {
+    public void DoTest()
+    {
+    Debug.Print(&quot;Test&quot;);
+    }
+    }
+</code></pre><ol><li>the use of the partial keyword indicates that other parts of the class, structure or interface can be defined within the namespace</li><li>the partial keyword must be used for all parts</li><li>each part must have the same accessibility, e.g. public, private, etc.</li><li>if any part is declared as abstract, the whole type is considered abstract</li><li>if any part is declared as sealed, the whole type is considered sealed</li><li>if any part is declared to inherit from a base class, the whole type will inherit from that class</li><li>each part may specify a different base interface and the final type will implement all the interfaces listed in all the divisional declarations</li><li>any class, structure or interface member declared in a divisional definition is available to all other divisions</li></ol>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[ES6 Destucturing]]></title>
             <link>https://Xuanji-Li.github.io/blog/2022/01/12/ES6-Destructuring/jsvariable</link>
